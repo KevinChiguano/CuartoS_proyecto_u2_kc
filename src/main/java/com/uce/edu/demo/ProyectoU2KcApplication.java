@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.sun.tools.javac.Main;
+import com.uce.edu.demo.estudiante.service.IEstudianteJdbcService;
+import com.uce.edu.demo.estudiante.to.Estudiante;
 import com.uce.edu.demo.service.IPersonaJdbcService;
 import com.uce.edu.demo.to.Persona;
 
@@ -17,7 +19,7 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 	private static final Logger logger = Logger.getLogger(ProyectoU2KcApplication.class);
 	
 	@Autowired
-	private IPersonaJdbcService iPersonaJdbcService;
+	private IEstudianteJdbcService estudianteJdbcService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2KcApplication.class, args);
@@ -25,28 +27,32 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		Persona persona = new Persona();
-		persona.setId(4);
-		persona.setNombre("Alexx");
-		persona.setApellido("Guaman");
+		
+		Estudiante estu = new Estudiante();
+		estu.setId(1);
+		estu.setNombre("Carlos");
+		estu.setApellido("Zoila");
+		estu.setCedula("123456789");
+		estu.setEdad("20");
 		
 		//Insertar
-		//this.iPersonaJdbcService.guardar(persona);
+		this.estudianteJdbcService.insertar(estu);
 		
-		Persona per1 = new Persona();
-		per1.setId(1);
-		per1.setNombre("A");
-		per1.setApellido("B");
+		Estudiante estu1 = new Estudiante();
+		estu1.setId(2);
+		estu1.setNombre("Carlos");
+		estu1.setApellido("Zoila");
+		estu1.setCedula("789456132");
+		estu1.setEdad("21");
 		
 		//Actualizar
-		//this.iPersonaJdbcService.actualizar(per1);
+		this.estudianteJdbcService.actualizar(estu1);
 		
 		//Eliminar
-		//this.iPersonaJdbcService.eliminar(3);
+		this.estudianteJdbcService.eliminar(1);
 		
 		//Buscar
-		logger.info(this.iPersonaJdbcService.buscar(4));
+		logger.info(this.estudianteJdbcService.buscar(2));
 		
 	}
 
