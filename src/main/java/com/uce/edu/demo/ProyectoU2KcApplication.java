@@ -10,8 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.sun.tools.javac.Main;
 import com.uce.edu.demo.estudiante.service.IEstudianteJdbcService;
 import com.uce.edu.demo.estudiante.to.Estudiante;
+import com.uce.edu.demo.repository.modelo.Persona;
 import com.uce.edu.demo.service.IPersonaJdbcService;
-import com.uce.edu.demo.to.Persona;
+import com.uce.edu.demo.service.IPersonaJpaService;
+import com.uce.edu.demo.to.PersonaTo;
 
 @SpringBootApplication
 public class ProyectoU2KcApplication implements CommandLineRunner{
@@ -19,7 +21,10 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 	private static final Logger logger = Logger.getLogger(ProyectoU2KcApplication.class);
 	
 	@Autowired
-	private IEstudianteJdbcService estudianteJdbcService;
+	private IPersonaJdbcService iPersonaJdbcService;
+	
+	@Autowired
+	private IPersonaJpaService iPersonaJpaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2KcApplication.class, args);
@@ -28,32 +33,28 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Estudiante estu = new Estudiante();
-		estu.setId(1);
-		estu.setNombre("Carlos");
-		estu.setApellido("Zoila");
-		estu.setCedula("123456789");
-		estu.setEdad("20");
-		
-		//Insertar
-		this.estudianteJdbcService.insertar(estu);
-		
-		Estudiante estu1 = new Estudiante();
-		estu1.setId(2);
-		estu1.setNombre("Carlos");
-		estu1.setApellido("Zoila");
-		estu1.setCedula("789456132");
-		estu1.setEdad("21");
-		
-		//Actualizar
-		this.estudianteJdbcService.actualizar(estu1);
-		
-		//Eliminar
-		this.estudianteJdbcService.eliminar(1);
+		//logger.info("Lista: "+this.iPersonaJdbcService.buscarTodos());
 		
 		//Buscar
-		logger.info(this.estudianteJdbcService.buscar(2));
+		logger.info("Datos con JPA: "+this.iPersonaJpaService.buscarPorId(2));
+		Persona per = new Persona();
+		per.setId(7);
+		per.setNombre("Edison");
+		per.setApellido("Benabides");
 		
+		//Guardar
+		//this.iPersonaJpaService.guardar(per);
+		
+		Persona per1 = new Persona();
+		per1.setId(4);
+		per1.setNombre("Andrea");
+		per1.setApellido("Solis");
+		
+		//Actualizacion
+		//this.iPersonaJpaService.actualizar(per1);
+		
+		//Borrar
+		this.iPersonaJpaService.eliminar(1);
 	}
 
 }
