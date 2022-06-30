@@ -1,6 +1,6 @@
 package com.uce.edu.demo.estudiante.to;
 
-public class Estudiante {
+public class EstudianteTo {
 	
 	private int id;
 	private String nombre;
@@ -9,11 +9,11 @@ public class Estudiante {
 	private String edad;
 	
 	//Constructor por defecto
-	public Estudiante() {
+	public EstudianteTo() {
 		
 	}
 	
-	public Estudiante(int id, String nombre, String apellido, String cedula, String edad) {
+	public EstudianteTo(int id, String nombre, String apellido, String cedula, String edad) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

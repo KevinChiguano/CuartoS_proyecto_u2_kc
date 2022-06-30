@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.ProyectoU2KcApplication;
-import com.uce.edu.demo.estudiante.to.Estudiante;
+import com.uce.edu.demo.estudiante.to.EstudianteTo;
 
 @Repository
 public class EstudianteJdbcRepository implements IEstudianteJdbcRepository {
@@ -18,7 +18,7 @@ public class EstudianteJdbcRepository implements IEstudianteJdbcRepository {
 	private static final Logger logger = Logger.getLogger(EstudianteJdbcRepository.class);
 
 	@Override
-	public void insertar(Estudiante estudiante) {
+	public void insertar(EstudianteTo estudiante) {
 		// TODO Auto-generated method stub
 		this.jdbcTemplate.update("insert into estudiante(id,nombre,apellido,cedula,edad) values(?,?,?,?,?)",
 				new Object[] { estudiante.getId(), estudiante.getNombre(), estudiante.getApellido(),
@@ -27,15 +27,15 @@ public class EstudianteJdbcRepository implements IEstudianteJdbcRepository {
 	}
 
 	@Override
-	public Estudiante buscar(int id) {
+	public EstudianteTo buscar(int id) {
 		// TODO Auto-generated method stub
 		logger.info("Estudiante encontrado: ");
 		return this.jdbcTemplate.queryForObject("select * from estudiante where id=?", new Object[] { id },
-				new BeanPropertyRowMapper<Estudiante>(Estudiante.class));
+				new BeanPropertyRowMapper<EstudianteTo>(EstudianteTo.class));
 	}
 
 	@Override
-	public void actualizar(Estudiante estudiante) {
+	public void actualizar(EstudianteTo estudiante) {
 		// TODO Auto-generated method stub
 		logger.info("Se actualizo el estudiante: "+estudiante);
 		this.jdbcTemplate.update("update estudiante set nombre=?,apellido=?,cedula=?,edad=? where id=?",
