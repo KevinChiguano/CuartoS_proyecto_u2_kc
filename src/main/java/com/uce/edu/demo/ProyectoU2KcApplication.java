@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.uce.edu.demo.estudiante.repository.modelo.Estudiante;
 import com.uce.edu.demo.estudiante.service.IEstudianteJpaService;
 import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.service.IPersonaJpaService;
 
 @SpringBootApplication
 public class ProyectoU2KcApplication implements CommandLineRunner{
@@ -17,6 +18,9 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 	
 	@Autowired
 	private IEstudianteJpaService estudianteJpaService;
+	
+	@Autowired
+	private IPersonaJpaService iPersonaJpaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2KcApplication.class, args);
@@ -27,30 +31,26 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 		
 		
 		//Buscar
-		logger.info("Datos con JPA: "+this.estudianteJpaService.buscar(2));
+		//logger.info("Datos con JPA: "+this.iPersonaJpaService.buscarPorId(2));
 		
-		Estudiante estu = new Estudiante();
-		estu.setId(1);
-		estu.setNombre("Alonso");
-		estu.setApellido("Aguilar");
-		estu.setCedula("456789132");
-		estu.setEdad("26");
+		Persona per = new Persona();
+		//per.setId(6);
+		per.setNombre("Pepito12");
+		per.setApellido("Perez");
 		
 		//Guardar
-		this.estudianteJpaService.insertar(estu);
+		this.iPersonaJpaService.guardar(per);
 		
-		Estudiante estu1 = new Estudiante();
-		estu1.setId(2);
-		estu1.setNombre("Alonso");
-		estu1.setApellido("Aguilar");
-		estu1.setCedula("147852396");
-		estu1.setEdad("24");
+		Persona per1 = new Persona();
+		per1.setId(6);
+		per1.setNombre("Kevin");
+		per1.setApellido("Correa");
 		
 		//Actualizacion
-		this.estudianteJpaService.actualizar(estu1);
+		//this.iPersonaJpaService.actualizar(per1);
 		
 		//Borrar
-		this.estudianteJpaService.eliminar(1);
+		//this.iPersonaJpaService.eliminar(7);
 	}
 
 }

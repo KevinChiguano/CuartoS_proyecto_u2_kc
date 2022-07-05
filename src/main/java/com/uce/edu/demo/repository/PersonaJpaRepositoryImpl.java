@@ -19,6 +19,7 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository {
 	public Persona buscarPorId(Integer id) {
 		return this.entityManager.find(Persona.class, id);
 	}
+	
 
 	@Override
 	public void insertar(Persona persona) {
