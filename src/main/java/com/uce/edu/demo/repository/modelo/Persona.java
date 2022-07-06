@@ -13,22 +13,29 @@ import javax.persistence.Table;
 public class Persona {
 	
 	@Id
-	@Column(name="id")
+	@Column(name="pers_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pers_id_seq")
 	@SequenceGenerator(name="pers_id_seq", sequenceName = "pers_id_seq", allocationSize = 1)
 	private Integer id;
 	
-	@Column(name="nombre")
+	@Column(name="pers_nombre")
 	private String nombre;
 	
-	@Column(name="apellido")
+	@Column(name="pers_cedula")
+	private String cedula;
+	
+	@Column(name="pers_apellido")
 	private String apellido;
 	
+	@Column(name="pers_genero")
+	private String genero;
+
 	
 
 	@Override
 	public String toString() {
-		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+		return "Persona [id=" + id + ", nombre=" + nombre + ", cedula=" + cedula + ", apellido=" + apellido
+				+ ", genero=" + genero + "]";
 	}
 
 	// GET y SET
@@ -55,5 +62,24 @@ public class Persona {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+	
+	
+	
 
 }
