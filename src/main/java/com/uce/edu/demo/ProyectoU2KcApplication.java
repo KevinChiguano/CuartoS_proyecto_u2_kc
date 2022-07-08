@@ -60,10 +60,24 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 		//LOGGER.info("Persona encontrada: "+p);
 		
 		//Buscar por apellido
-		List<Persona> listaPersona = this.iPersonaJpaService.buscarPorApellido("Perez");
+//		List<Persona> listaPersona = this.iPersonaJpaService.buscarPorApellido("Perez");
+//		
+//		for(Persona item: listaPersona) {
+//			LOGGER.info("Persona: "+item);
+//		}
 		
-		for(Persona item: listaPersona) {
-			LOGGER.info("Persona: "+item);
+		//Buscar por genero
+//		List<Persona> listaPersonaGenre = this.iPersonaJpaService.buscarPorGenero("M");
+//		
+//		for (Persona item: listaPersonaGenre) {
+//			LOGGER.info(item);
+//		}
+		
+		//Buscar por nombre
+		List<Persona> listaPersonaNom = this.iPersonaJpaService.buscarPorNombre("Pepito12");
+		
+		for(Persona item: listaPersonaNom) {
+			LOGGER.info(item);
 		}
 	}
 
