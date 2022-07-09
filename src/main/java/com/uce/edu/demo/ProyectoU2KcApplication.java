@@ -18,9 +18,6 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 	private static final Logger LOGGER = Logger.getLogger(ProyectoU2KcApplication.class);
 	
 	@Autowired
-	private IEstudianteJpaService estudianteJpaService;
-	
-	@Autowired
 	private IPersonaJpaService iPersonaJpaService;
 	
 	public static void main(String[] args) {
@@ -30,55 +27,13 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
+		//Actualizar con JPQL
+		//int resultado = this.iPersonaJpaService.actualizarPorApellido("FE", "Perez");
+		//LOGGER.info("Cantidad de registros actualizados: "+resultado);
 		
-		//Buscar
-		//LOGGER.info("Datos con JPA: "+this.iPersonaJpaService.buscarPorId(2));
-		
-		Persona per = new Persona();
-		//per.setId(6);
-		per.setNombre("Juan");
-		per.setApellido("Chiguano");
-		per.setGenero("M");
-		per.setCedula("987451296");
-		
-		//Guardar
-		//this.iPersonaJpaService.guardar(per);
-		
-		Persona per1 = new Persona();
-		per1.setId(6);
-		per1.setNombre("Kevin");
-		per1.setApellido("Correa");
-		
-		//Actualizacion
-		//this.iPersonaJpaService.actualizar(per1);
-		
-		//Borrar
-		//this.iPersonaJpaService.eliminar(7);
-		
-		//Buscar por cedula
-		//Persona p = this.iPersonaJpaService.buscarPorCedula("123456789");
-		//LOGGER.info("Persona encontrada: "+p);
-		
-		//Buscar por apellido
-//		List<Persona> listaPersona = this.iPersonaJpaService.buscarPorApellido("Perez");
-//		
-//		for(Persona item: listaPersona) {
-//			LOGGER.info("Persona: "+item);
-//		}
-		
-		//Buscar por genero
-//		List<Persona> listaPersonaGenre = this.iPersonaJpaService.buscarPorGenero("M");
-//		
-//		for (Persona item: listaPersonaGenre) {
-//			LOGGER.info(item);
-//		}
-		
-		//Buscar por nombre
-		List<Persona> listaPersonaNom = this.iPersonaJpaService.buscarPorNombre("Pepito12");
-		
-		for(Persona item: listaPersonaNom) {
-			LOGGER.info(item);
-		}
+		//Eliminar con JPQL
+		int resultado2 = this.iPersonaJpaService.eliminarPorGenero("F");
+		LOGGER.info("Cantidad de eliminados: "+ resultado2);
 	}
 
 }
