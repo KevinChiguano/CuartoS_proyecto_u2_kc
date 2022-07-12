@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -22,11 +23,10 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository {
 	public Persona buscarPorId(Integer id) {
 		return this.entityManager.find(Persona.class, id);
 	}
-	
 
 	@Override
 	public void insertar(Persona persona) {
-		//black Friday se inserta
+		// black Friday se inserta
 		this.entityManager.persist(persona);
 	}
 
@@ -41,17 +41,40 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository {
 		this.entityManager.remove(persona);
 	}
 
-
 	@Override
 	public Persona buscarPorCedula(String cedula) {
 		// TODO Auto-generated method stub
-		//SELECT * FROM public.persona where pers_cedula='Perez'
+		// SELECT * FROM public.persona where pers_cedula='Perez'
 		Query jpqlQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.cedula = :datoCedula");
 		jpqlQuery.setParameter("datoCedula", cedula);
-		return (Persona)jpqlQuery.getSingleResult();
-		
+		return (Persona) jpqlQuery.getSingleResult();
+
 	}
 
+	@Override
+	public Persona buscarPorCedulaTyped(String cedula) {
+		// TODO Auto-generated method stub
+		TypedQuery<Persona> myTypedQuery = this.entityManager
+				.createQuery("SELECT p FROM Persona p WHERE p.cedula = :datoCedula", Persona.class);
+		myTypedQuery.setParameter("datoCedula", cedula);
+		return myTypedQuery.getSingleResult();
+	}
+
+	@Override
+	public Persona buscarPorCedulaNamed(String cedula) {
+		// TODO Auto-generated method stub
+		Query myQuery = this.entityManager.createNamedQuery("Persona.buscarPorCedula");
+		myQuery.setParameter("datoCedula", cedula);
+		return (Persona) myQuery.getSingleResult();
+	}
+
+	@Override
+	public Persona buscarPorCedulaTypedNamed(String cedula) {
+		// TODO Auto-generated method stub
+		TypedQuery<Persona> myQuery = this.entityManager.createNamedQuery("Persona.buscarPorCedula", Persona.class);
+		myQuery.setParameter("datoCedula", cedula);
+		return myQuery.getSingleResult();
+	}
 
 	@Override
 	public List<Persona> buscarPorGenero(String genero) {
@@ -59,7 +82,6 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository {
 		myQuery.setParameter("datoGenero", genero);
 		return myQuery.getResultList();
 	}
-
 
 	@Override
 	public List<Persona> buscarPorApellido(String apellido) {
@@ -69,6 +91,15 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository {
 		return myQuery.getResultList();
 	}
 
+	@Override
+	public List<Persona> buscarPorNombreApellido(String nombre, String apellido) {
+		// TODO Auto-generated method stub
+		TypedQuery<Persona> myQuery = this.entityManager.createNamedQuery("Persona.buscarPorNombreApellido",
+				Persona.class);
+		myQuery.setParameter("datoNombre", nombre);
+		myQuery.setParameter("datoApellido", apellido);
+		return myQuery.getResultList();
+	}
 
 	@Override
 	public List<Persona> buscarPorNombre(String nombre) {
@@ -78,21 +109,20 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository {
 		return myQuery.getResultList();
 	}
 
-
 	@Override
 	public int actualizarPorApellido(String genero, String apellido) {
 		// TODO Auto-generated method stub
-		Query myQuery = this.entityManager.createQuery("UPDATE Persona p SET p.genero = :datoGenero WHERE p.apellido= :datoApellido");
+		Query myQuery = this.entityManager
+				.createQuery("UPDATE Persona p SET p.genero = :datoGenero WHERE p.apellido= :datoApellido");
 		myQuery.setParameter("datoGenero", genero);
 		myQuery.setParameter("datoApellido", apellido);
 		return myQuery.executeUpdate();
 	}
 
-
 	@Override
 	public int eliminarPorGenero(String genero) {
 		// TODO Auto-generated method stub
-		//delete from persona where pers_apellido = 'Perez'
+		// delete from persona where pers_apellido = 'Perez'
 		Query myQuery = this.entityManager.createQuery("DELETE FROM Persona p WHERE p.genero= :genero");
 		myQuery.setParameter("genero", genero);
 		return myQuery.executeUpdate();

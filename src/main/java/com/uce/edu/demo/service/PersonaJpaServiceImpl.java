@@ -9,11 +9,11 @@ import com.uce.edu.demo.repository.IPersonaJpaRepository;
 import com.uce.edu.demo.repository.modelo.Persona;
 
 @Service
-public class PersonaJpaServiceImpl implements IPersonaJpaService{
+public class PersonaJpaServiceImpl implements IPersonaJpaService {
 
 	@Autowired
 	private IPersonaJpaRepository iPersonaJpaRepository;
-	
+
 	@Override
 	public void guardar(Persona persona) {
 		this.iPersonaJpaRepository.insertar(persona);
@@ -21,12 +21,12 @@ public class PersonaJpaServiceImpl implements IPersonaJpaService{
 
 	@Override
 	public void actualizar(Persona persona) {
-		this.iPersonaJpaRepository.actualizar(persona);	
+		this.iPersonaJpaRepository.actualizar(persona);
 	}
 
 	@Override
 	public void eliminar(Integer id) {
-		this.iPersonaJpaRepository.eliminar(id);	
+		this.iPersonaJpaRepository.eliminar(id);
 	}
 
 	@Override
@@ -38,6 +38,24 @@ public class PersonaJpaServiceImpl implements IPersonaJpaService{
 	public Persona buscarPorCedula(String cedula) {
 		// TODO Auto-generated method stub
 		return this.iPersonaJpaRepository.buscarPorCedula(cedula);
+	}
+
+	@Override
+	public Persona buscarPorCedulaTyped(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorCedulaTyped(cedula);
+	}
+
+	@Override
+	public Persona buscarPorCedulaNamed(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorCedulaNamed(cedula);
+	}
+
+	@Override
+	public Persona buscarPorCedulaTypedNamed(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorCedulaTypedNamed(cedula);
 	}
 
 	@Override
@@ -68,6 +86,12 @@ public class PersonaJpaServiceImpl implements IPersonaJpaService{
 	public int eliminarPorGenero(String genero) {
 		// TODO Auto-generated method stub
 		return this.iPersonaJpaRepository.eliminarPorGenero(genero);
+	}
+
+	@Override
+	public List<Persona> buscarPorNombreApellido(String nombre, String apellido) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorNombreApellido(nombre, apellido);
 	}
 
 }
