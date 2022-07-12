@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.estudiante.repository.modelo.Estudiante;
+import com.uce.edu.demo.estudiante.service.IEstudianteJpaService;
 import com.uce.edu.demo.repository.modelo.Persona;
 import com.uce.edu.demo.service.IPersonaJpaService;
 
@@ -18,6 +20,9 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 	
 	@Autowired
 	private IPersonaJpaService iPersonaJpaService;
+	
+	@Autowired
+	private IEstudianteJpaService estudianteJpaService;
 		
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2KcApplication.class, args);
@@ -26,29 +31,30 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Persona per = new Persona();
-		per.setNombre("Daniel");
-		per.setApellido("Velez");
-		per.setGenero("M");
-		per.setCedula("345345");
+		Estudiante estudiante = new Estudiante();
+		estudiante.setApellido("Chiguano");
+		estudiante.setNombre("Kevin");
+		estudiante.setCedula("102352698");
+		estudiante.setEdad("30");
+		//this.estudianteJpaService.insertar(estudiante);
 		
-		this.iPersonaJpaService.guardar(per);
+		//NamedQuery
+		LOGGER.info(this.estudianteJpaService.buscarPorEdad("25"));
 		
-		//1 TypedQuery
-		Persona perTyped = this.iPersonaJpaService.buscarPorCedulaTyped("123123123");
-		LOGGER.info("Persona Typed: "+perTyped);
-		//2 NamedQuery
-		Persona perNamed = this.iPersonaJpaService.buscarPorCedulaNamed("123123123");
-		LOGGER.info("Persona Named: "+perNamed);
-		//3 TypedQuery NamedQuery
-		Persona perTypedNamed = this.iPersonaJpaService.buscarPorCedulaTypedNamed("123123123");
-		LOGGER.info("Persona NamedTyped: "+perTypedNamed);
+		//NamedQuery
+		LOGGER.info(this.estudianteJpaService.eliminarPorEdad("30"));
 		
-		//4. Varios NamedQuery
-		List<Persona> listaPersona = this.iPersonaJpaService.buscarPorNombreApellido("Daniel", "Velez");
-		for(Persona item:listaPersona) {
-			LOGGER.info("Persona: "+item);
-		}
+		//TypedQuery NamedQuery
+		LOGGER.info(this.estudianteJpaService.buscarPorNombreAsc("Juan"));
+		
+		//TypedQuery NamedQuery
+		LOGGER.info(this.estudianteJpaService.buscarPorEdadDesc("25"));
+		
+		//Typed
+		LOGGER.info(this.estudianteJpaService.buscarPorCedula("123789456", "Juan"));
+		
+		//Typed
+		LOGGER.info(this.estudianteJpaService.buscarPorCedulaNombre("439521678", "Maria", "25"));
 		
 	}
 
