@@ -31,31 +31,8 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Estudiante estudiante = new Estudiante();
-		estudiante.setApellido("Chiguano");
-		estudiante.setNombre("Kevin");
-		estudiante.setCedula("102352698");
-		estudiante.setEdad("30");
-		//this.estudianteJpaService.insertar(estudiante);
-		
-		//NamedQuery
-		LOGGER.info(this.estudianteJpaService.buscarPorEdad("25"));
-		
-		//NamedQuery
-		LOGGER.info(this.estudianteJpaService.eliminarPorEdad("30"));
-		
-		//TypedQuery NamedQuery
-		LOGGER.info(this.estudianteJpaService.buscarPorNombreAsc("Juan"));
-		
-		//TypedQuery NamedQuery
-		LOGGER.info(this.estudianteJpaService.buscarPorEdadDesc("25"));
-		
-		//Typed
-		LOGGER.info(this.estudianteJpaService.buscarPorCedula("123789456", "Juan"));
-		
-		//Typed
-		LOGGER.info(this.estudianteJpaService.buscarPorCedulaNombre("439521678", "Maria", "25"));
-		
+		//LOGGER.info(this.iPersonaJpaService.buscarPorCedulaNative("345345"));
+		LOGGER.info(this.iPersonaJpaService.buscarPorCedulaNamedNative("345345"));
 	}
 
 }
