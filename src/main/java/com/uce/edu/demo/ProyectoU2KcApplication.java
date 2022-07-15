@@ -31,8 +31,13 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		//LOGGER.info(this.iPersonaJpaService.buscarPorCedulaNative("345345"));
-		LOGGER.info(this.iPersonaJpaService.buscarPorCedulaNamedNative("345345"));
+		//NaviteQuery
+		LOGGER.info(this.estudianteJpaService.buscarPorApellidoDescNative("Veloz"));
+		LOGGER.info(this.estudianteJpaService.buscarPorNombreDescNative("Maria"));
+		
+		//NamedNativeQuery
+		LOGGER.info(this.estudianteJpaService.buscarPorEdadAscNamedNative("25"));
+		LOGGER.info(this.estudianteJpaService.buscarPorNombreApellidoAscNamedNative("Juan", "Veloz"));
 	}
 
 }

@@ -85,7 +85,7 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository {
 		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM persona Where pers_cedula = :datoCedula",
 				Persona.class);
 		myQuery.setParameter("datoCedula", cedula);
-		return (Persona) myQuery.getSingleResult();
+		return  (Persona) myQuery.getSingleResult();
 	}
 
 	@Override
