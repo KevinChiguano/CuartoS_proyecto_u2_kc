@@ -34,4 +34,8 @@ public interface IEstudianteJpaService {
 
 	public List<Estudiante> buscarPorNombreApellidoAscNamedNative(String nombre, String apellido);
 
+	public List<Estudiante> busquedaDinamicaCedulaCriteriaApi(String nombre, String apellido, String edad);
+
+	public List<Estudiante> busquedaDinamicaNombreCriteriaApi(String nombre, String apellido, String cedula);
+
 }

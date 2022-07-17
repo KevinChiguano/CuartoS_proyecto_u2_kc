@@ -31,20 +31,9 @@ public class ProyectoU2KcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		//NaviteQuery
-		//LOGGER.info(this.estudianteJpaService.buscarPorApellidoDescNative("Veloz"));
-		//LOGGER.info(this.estudianteJpaService.buscarPorNombreDescNative("Maria"));
-		
-		//NamedNativeQuery
-		//LOGGER.info(this.estudianteJpaService.buscarPorEdadAscNamedNative("25"));
-		//LOGGER.info(this.estudianteJpaService.buscarPorNombreApellidoAscNamedNative("Juan", "Veloz"));
-		
-		//Persona perTyped = this.iPersonaJpaService.buscarPorCedulaCriteriaApi("345345");
-		
-		//LOGGER.info("Persona Criteria API: "+ perTyped);
-		
-		Persona perDinamica = this.iPersonaJpaService.buscarDinamicamente("Daniela", "Perez", "F");
-		LOGGER.info(perDinamica);
+		//CriteriaAPIQuery
+		LOGGER.info(estudianteJpaService.busquedaDinamicaCedulaCriteriaApi("Juan", "Arguello", "21"));
+		LOGGER.info(estudianteJpaService.busquedaDinamicaNombreCriteriaApi("Juan", "Veloz", "123"));
 	}
 
 }

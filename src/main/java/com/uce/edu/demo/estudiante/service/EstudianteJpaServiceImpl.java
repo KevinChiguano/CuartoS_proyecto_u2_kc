@@ -98,4 +98,16 @@ public class EstudianteJpaServiceImpl implements IEstudianteJpaService{
 		return this.estudianteJpaRepository.buscarPorNombreApellidoAscNamedNative(nombre, apellido);
 	}
 
+	@Override
+	public List<Estudiante> busquedaDinamicaCedulaCriteriaApi(String nombre, String apellido, String edad) {
+		// TODO Auto-generated method stub
+		return this.estudianteJpaRepository.busquedaDinamicaCedulaCriteriaApi(nombre, apellido, edad);
+	}
+
+	@Override
+	public List<Estudiante> busquedaDinamicaNombreCriteriaApi(String nombre, String apellido, String cedula) {
+		// TODO Auto-generated method stub
+		return this.estudianteJpaRepository.busquedaDinamicaNombreCriteriaApi(nombre, apellido, cedula);
+	}
+
 }
