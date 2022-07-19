@@ -15,6 +15,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.estudiante.repository.modelo.Estudiante;
+import com.uce.edu.demo.estudiante.repository.modelo.EstudianteContadorEdad;
+import com.uce.edu.demo.estudiante.repository.modelo.EstudianteSencillo;
 
 @Repository
 @Transactional
@@ -175,6 +177,23 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository{
 		TypedQuery<Estudiante> myQueryFinal = this.entityManager.createQuery(myQuery);
 		
 		return myQueryFinal.getResultList();
+	}
+
+	@Override
+	public EstudianteSencillo buscarPorCedulaSencillo(String cedula) {
+		// TODO Auto-generated method stub
+		TypedQuery<EstudianteSencillo> myQuery = this.entityManager.createQuery("SELECT NEW com.uce.edu.demo.estudiante.repository.modelo.EstudianteSencillo(e.nombre, e.apellido, e.cedula) FROM Estudiante e WHERE e.cedula = :datoCedula",EstudianteSencillo.class);
+		myQuery.setParameter("datoCedula", cedula);
+		
+		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public List<EstudianteContadorEdad> consultarCantidadPorEdad() {
+		// TODO Auto-generated method stub
+		TypedQuery<EstudianteContadorEdad> myQuery = this.entityManager.createQuery("SELECT NEW com.uce.edu.demo.estudiante.repository.modelo.EstudianteContadorEdad(e.edad, COUNT(e.apellido)) FROM Estudiante e GROUP BY e.edad HAVING COUNT(e.apellido) > 1",EstudianteContadorEdad.class);
+		
+		return myQuery.getResultList();
 	}
 
 }
