@@ -1,6 +1,6 @@
 package com.uce.edu.demo.service;
 
-import com.uce.edu.demo.repository.modelo.Ciudadano1;
+import com.uce.edu.demo.repository.modelo.onetoone.Ciudadano1;
 
 public interface ICiudadano1Service {
 

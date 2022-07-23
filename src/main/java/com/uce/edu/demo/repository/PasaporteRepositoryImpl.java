@@ -6,7 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.demo.repository.modelo.Pasaporte;
+import com.uce.edu.demo.repository.modelo.onetoone.Pasaporte;
 
 @Repository
 @Transactional
