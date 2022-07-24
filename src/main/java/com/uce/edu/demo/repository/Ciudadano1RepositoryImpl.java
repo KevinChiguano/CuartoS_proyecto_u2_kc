@@ -29,11 +29,14 @@ public class Ciudadano1RepositoryImpl implements ICiudadano1Repository{
 		// TODO Auto-generated method stub
 		
 		
-		//Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM ciudadano1 c JOIN pasaporte p ON c.ciud1_id = p.ciud1_id_ciudadano where c.ciud1_id = 8", Ciudadano1.class);
+		//Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM ciudadano1 c JOIN pasaporte p ON c.ciud1_id = p.ciud1_id_ciudadano where c.ciud1_id = :datoId", Ciudadano1.class);
 		
 		//myQuery.setParameter("datoId", id);
 		
-		return this.entityManager.find(Ciudadano1.class, id);
+		Query myQuery = this.entityManager.createQuery("SELECT c FROM Ciudadano1 c WHERE id =: datoId");
+		myQuery.setParameter("datoId", id);
+		return (Ciudadano1) myQuery.getSingleResult();
+		//return this.entityManager.find(Ciudadano1.class, id);
 	}
 
 	@Override

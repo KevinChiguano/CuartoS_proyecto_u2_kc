@@ -39,10 +39,12 @@ public class Ciudadano1 {
 	
 	
 	
+	
+
 	@Override
 	public String toString() {
 		return "Ciudadano1 [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
-				+ ", fechaNacimiento=" + fechaNacimiento + ", pasaporte=" + pasaporte + "]";
+				+ ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 
 	//SET y GET
