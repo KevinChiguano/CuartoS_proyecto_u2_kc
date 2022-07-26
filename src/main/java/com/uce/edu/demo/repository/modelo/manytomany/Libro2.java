@@ -1,5 +1,6 @@
 package com.uce.edu.demo.repository.modelo.manytomany;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,30 +12,29 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "libro")
-public class Libro {
+@Table(name = "libro2")
+public class Libro2 {
 
 	@Id
-	@Column(name = "libr_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "libr_id_seq")
-	@SequenceGenerator(name = "libr_id_seq", sequenceName = "libr_id_seq", allocationSize = 1)
+	@Column(name = "libr2_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "libr2_id_seq")
+	@SequenceGenerator(name = "libr2_id_seq", sequenceName = "libr2_id_seq", allocationSize = 1)
 	private Integer id;
 
-	@Column(name = "libr_titulo")
+	@Column(name = "libr2_titulo")
 	private String titulo;
 
-	@Column(name = "libr_cantidad_paginas")
+	@Column(name = "libr2_cantidad_paginas")
 	private Integer cantidadPaginas;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "libro_autor", joinColumns = @JoinColumn(name = "liau_id_libro"), inverseJoinColumns = @JoinColumn(name = "liau_id_autor"))
-	private Set<Autor> autores;
-	
-	
+	@OneToMany(mappedBy = "libro2", cascade = CascadeType.ALL)
+	private List<Libro2Autor2> libroAutor;
+
 
 	//SET y GET
 	public Integer getId() {
@@ -61,15 +61,15 @@ public class Libro {
 		this.cantidadPaginas = cantidadPaginas;
 	}
 
-	public Set<Autor> getAutores() {
-		return autores;
+	public List<Libro2Autor2> getLibroAutor() {
+		return libroAutor;
 	}
 
-	public void setAutores(Set<Autor> autores) {
-		this.autores = autores;
+	public void setLibroAutor(List<Libro2Autor2> libroAutor) {
+		this.libroAutor = libroAutor;
 	}
+	
+	
 
-	
-	
 
 }
