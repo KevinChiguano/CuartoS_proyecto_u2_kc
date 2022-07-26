@@ -1,12 +1,16 @@
-package com.uce.edu.demo.repository.modelo.onetomany;
+package com.uce.edu.demo.repository.modelo.manytomany;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,26 +23,16 @@ public class Libro {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "libr_id_seq")
 	@SequenceGenerator(name = "libr_id_seq", sequenceName = "libr_id_seq", allocationSize = 1)
 	private Integer id;
-	
-	@Column(name = "libr_isbn")
-	private String isbn;
-	
+
 	@Column(name = "libr_titulo")
 	private String titulo;
-	
-	@Column(name = "libr_genero")
-	private String genero;
-	
-	@ManyToOne
-	@JoinColumn(name = "libr_id_autor")
-	private Autor autor;
-	
-	
 
-	@Override
-	public String toString() {
-		return "Libro [id=" + id + ", isbn=" + isbn + ", titulo=" + titulo + ", genero=" + genero + "]";
-	}
+	@Column(name = "libr_cantidad_paginas")
+	private Integer cantidadPaginas;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "libro_autor", joinColumns = @JoinColumn(name = "liau_id_libro"), inverseJoinColumns = @JoinColumn(name = "liau_id_autor"))
+	private Set<Autor> autores;
 
 	//SET y GET
 	public Integer getId() {
@@ -49,14 +43,6 @@ public class Libro {
 		this.id = id;
 	}
 
-	public String getIsbn() {
-		return isbn;
-	}
-
-	public void setIsbn(String isbmn) {
-		this.isbn = isbmn;
-	}
-
 	public String getTitulo() {
 		return titulo;
 	}
@@ -65,21 +51,22 @@ public class Libro {
 		this.titulo = titulo;
 	}
 
-	public String getGenero() {
-		return genero;
+	public Integer getCantidadPaginas() {
+		return cantidadPaginas;
 	}
 
-	public void setGenero(String genero) {
-		this.genero = genero;
+	public void setCantidadPaginas(Integer cantidadPaginas) {
+		this.cantidadPaginas = cantidadPaginas;
 	}
 
-	public Autor getAutor() {
-		return autor;
+	public Set<Autor> getAutores() {
+		return autores;
 	}
 
-	public void setAutor(Autor autor) {
-		this.autor = autor;
+	public void setAutores(Set<Autor> autores) {
+		this.autores = autores;
 	}
+
 	
 	
 
