@@ -25,9 +25,9 @@ public class VehiculoServiceImpl implements IVehiculoService{
 	}
 
 	@Override
-	public void eliminar(String placa) {
+	public int eliminar(String placa) {
 		// TODO Auto-generated method stub
-		this.iVehiculoRepository.eliminar(placa);
+		return this.iVehiculoRepository.eliminar(placa);
 	}
 
 	@Override

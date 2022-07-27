@@ -1,7 +1,5 @@
 package com.uce.edu.demo.prueba.repository;
 
-import java.math.BigDecimal;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -31,12 +29,11 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository{
 	}
 
 	@Override
-	public void eliminar(String placa) {
+	public int eliminar(String placa) {
 		// TODO Auto-generated method stub
 		Query query = this.entityManager.createQuery("DELETE FROM Vehiculo v WHERE v.placa =:datoPlaca");
 		query.setParameter("datoPlaca", placa);
-		query.executeUpdate();
-		
+		return query.executeUpdate();
 	}
 
 	@Override

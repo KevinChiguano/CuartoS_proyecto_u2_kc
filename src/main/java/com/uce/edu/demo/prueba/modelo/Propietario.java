@@ -1,36 +1,54 @@
 package com.uce.edu.demo.prueba.modelo;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "propietario")
 public class Propietario {
 
+	@Id
+	@Column(name = "prop_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prop_id_seq")
+	@SequenceGenerator(name = "prop_id_seq", sequenceName = "prop_id_seq", allocationSize = 1)
+	private Integer id;
+
 	@Column(name = "prop_nombre")
 	private String nombre;
-	
+
 	@Column(name = "prop_apellido")
 	private String apellido;
-	
-	@Id
+
 	@Column(name = "prop_cedula")
 	private String cedula;
-	
+
 	@Column(name = "prop_fecha_nacimiento")
 	private LocalDateTime fechaNacimiento;
+	
+	@OneToMany(mappedBy = "propietario")
+	private List<Matricula> matriculas;
+	
+	
+	//SET y GET
 
-	@Override
-	public String toString() {
-		return "Propietario [nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", fechaNacimiento="
-				+ fechaNacimiento + "]";
+	public Integer getId() {
+		return id;
 	}
 
-	// SET y GET
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -62,5 +80,15 @@ public class Propietario {
 	public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+
+	public List<Matricula> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
+	}
+	
+	
 
 }

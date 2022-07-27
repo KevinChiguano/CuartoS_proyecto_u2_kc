@@ -25,11 +25,11 @@ public class PropietarioRepositoryImpl implements IPropietarioRepository{
 	}
 
 	@Override
-	public void eliminar(String cedula) {
+	public int eliminar(String cedula) {
 		// TODO Auto-generated method stub
 		Query jpqlQuery = this.entityManager.createQuery("DELETE FROM Propietario p WHERE p.cedula=: datoCedula");
 		jpqlQuery.setParameter("datoCedula", cedula);
-		jpqlQuery.executeUpdate();
+		return jpqlQuery.executeUpdate();
 	}
 
 	@Override
